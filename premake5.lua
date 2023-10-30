@@ -1,6 +1,8 @@
 project "ImGui"
     kind "StaticLib"
     language "C++"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin/" .. outputdir .. "/%{proname}")
@@ -16,12 +18,36 @@ project "ImGui"
         "imstb_textedit.h",
         "imstb_truetype.h",
         "imgui_demo.cpp",
+--        "../imgui-sfml/imconfig-SFML.h"
     }
+
+--    includedirs
+--    {
+--        "../SFML/include"
+--    }
+
+--    defines
+--    {
+--        "IMGUI_USER_CONFIG=\"../imgui-sfml/imconfig-SFML.h\"",
+--    }
+
+--    links
+--    {
+--        "sfml-system",
+--        "sfml-graphics",
+--    }
 
     filter "system:windows"
         systemversion "latest"
-        cppdialect "C++17"
-        staticruntime "On"
 
-    filter {"system:windows", "configurations:Release"}
-        buildoptions "/MD"
+    filter {"configurations:Debug"}
+        runtime "Debug"
+        symbols "on"
+
+    filter {"configurations:Release"}
+        runtime "Release"
+        optimize "on"    
+
+    filter {"configurations:Retail"}
+        runtime "Release"
+        optimize "on"
