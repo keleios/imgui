@@ -60,6 +60,7 @@ examples/example_sdl2_sdlrenderer/example_sdl2_sdlrenderer
 
 ## Premake5 Generated Files
 *.vcxproj
+*.vcxproj.filters
 
 ## Generated libs
 /bin
